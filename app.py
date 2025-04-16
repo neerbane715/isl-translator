@@ -47,6 +47,13 @@ shutdown_event = Event()
 model_lock = Lock()
 sequence_lock = Lock()
 
+from flask import render_template
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+
 # Initialize sequence buffer globally
 sequence = []  # Keep last 30 frames
 
