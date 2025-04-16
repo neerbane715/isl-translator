@@ -1,0 +1,124 @@
+/* Base Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8fafc;
+}
+
+/* Video Panel Styling */
+.video-container {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    background: white;
+}
+
+.video-container:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Output Panel Styling */
+.output-panel {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: white;
+    transition: all 0.3s ease;
+}
+
+
+/* Animations */
+@keyframes gentlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+.gesture-display {
+    animation: gentlePulse 3s infinite;
+}
+
+/* Button Enhancements */
+.control-btn {
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Feedback Button Specific Styles */
+#thumbsUpBtn:hover {
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.2);
+}
+
+#thumbsDownBtn:hover {
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+}
+
+/* Smooth Language Buttons */
+.language-btn {
+    background: linear-gradient(to right, #6366F1, #A78BFA);
+    transition: 0.3s ease-in-out;
+    color: white;
+    font-weight: 600;
+}
+
+.language-btn:hover {
+    filter: brightness(1.1);
+}
+
+/* Confidence Bar Animation */
+#confidenceBar {
+    transition: width 0.5s ease-in-out;
+}
+
+/* Language Buttons */
+.language-btn {
+    background: linear-gradient(to right, #6366F1, #A78BFA);
+    transition: 0.3s ease-in-out;
+    color: white;
+    font-weight: 600;
+}
+
+.language-btn:hover {
+    filter: brightness(1.1);
+}
+
+/* Status Indicators */
+.status-active {
+    animation: statusPulse 1.5s infinite alternate;
+}
+
+/* Error Toast */
+#errorToast {
+    transition: all 0.3s ease;
+    z-index: 1000;
+    min-width: 300px;
+    text-align: center;
+}
+
+#errorToast.hidden {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+    visibility: hidden;
+}
+
+#errorToast i {
+    font-size: 1.2rem;
+}
+
+#errorMessage {
+    font-weight: 500;
+}
+
+@keyframes statusPulse {
+    from { opacity: 0.9; }
+    to { opacity: 1; }
+}
+
+/* Footer Shadow */
+footer {
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}

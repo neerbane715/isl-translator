@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishaarey - ISL Translator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="font-[Poppins] bg-gray-50">
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-hands-helping text-2xl"></i>
+                <h1 class="text-2xl font-bold">Ishaarey</h1>
+
+               
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <!-- Hero Section -->
+<section class="py-20 px-4 bg-cover bg-center text-black" style="background-image: url('/static/image.png');">
+    <div class="container mx-auto text-center bg-black bg-opacity-10 p-6 max-w-3xl rounded-lg">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">Bridging Communication Gaps</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
+            Ishaarey translates Indian Sign Language to text and speech in real-time, 
+            facilitating communication for the deaf and hard-of-hearing community.
+        </p>
+        <a href="/templates/interpreter.html" class="inline-block px-8 py-4 bg-white text-indigo-600 font-bold rounded-lg hover:bg-gray-100 transition duration-300">
+            Get Started <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+    </div>
+
+
+    <!-- Features Section with Neumorphism -->
+        <div class="container mx-auto">
+            <br>
+            <h2 class="text-3xl font-bold text-center mb-12">Our Technology</h2>
+         </div>
+    
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-black bg-opacity-35 p-6 rounded-lg shadow-lg transform transition hover:scale-105">
+                    <div class="text-white text-4xl mb-4">
+                        <i class="fas fa-hand-paper"></i>
+                    </div>
+                    <h3 class="text-xl text-gray-200 font-bold mb-2">Sign Recognition</h3>
+                    <p class="text-gray-200">
+                        Advanced ML models trained on 0.5s video clips at 60fps to accurately recognize ISL signs.
+                    </p>
+                </div>
+                
+                <div class="bg-black bg-opacity-35 p-6 rounded-lg shadow-lg transform transition hover:scale-105">
+                    <div class="text-white text-4xl mb-4">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="text-xl text-gray-200 font-bold mb-2">Multi-Language</h3>
+                    <p class="text-gray-200">
+                        Supports translation to 10+ Indian languages including Hindi, Tamil, Bengali and more.
+                    </p>
+                </div>
+                
+                <div class="bg-black bg-opacity-35 p-6 rounded-lg shadow-lg transform transition hover:scale-105">
+                    <div class="text-white text-4xl mb-4">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <h3 class="text-xl text-gray-200 font-bold mb-2">Speech Output</h3>
+                    <p class="text-gray-200">
+                        Natural sounding speech synthesis in multiple languages and accents.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Floating Scroll Down Button -->
+    <button id="scrollDownBtn" 
+    class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300">
+    <i class="fas fa-chevron-down text-xl"></i>
+    </button>
+
+    <script>
+    const scrollBtn = document.getElementById('scrollDownBtn');
+
+    // Function to scroll to the footer
+    scrollBtn.addEventListener('click', function () {
+        document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Hide button when at the bottom
+    window.addEventListener('scroll', function () {
+        const footer = document.querySelector('footer');
+        const footerPosition = footer.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (footerPosition <= windowHeight) {
+            scrollBtn.style.display = 'none';
+        } else {
+            scrollBtn.style.display = 'block';
+        }
+    });
+    </script>
+
+
+    <!-- Footer with Team Info -->
+    <footer class="bg-gray-800 text-white py-8 px-4">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Development Team -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-center border-b pb-2">Development Team</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-palette text-indigo-300"></i>
+                            <span>Aishwaryya Bhattacharyya <span class="text-sm text-gray-300">- UI/UX Development</span></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-paint-brush text-indigo-300"></i>
+                            <span>Nirban Das <span class="text-sm text-gray-300">- UI/UX Development</span></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-code text-indigo-300"></i>
+                            <span>Debnanda Datta <span class="text-sm text-gray-300">- API Development</span></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-brain text-indigo-300"></i>
+                            <span>Shubham Sonthalia <span class="text-sm text-gray-300">- ML Model Training & Development</span></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-center border-b pb-2">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-indigo-300"></i>
+                            <a href="mailto:dev@ishaarey.com" class="hover:underline">dev@ishaarey.com</a>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fab fa-github text-indigo-300"></i>
+                            <a href="https://github.com/ishaarey" class="hover:underline">github.com/ishaarey</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-center mt-8 pt-6 border-t border-gray-700">© 2025 Ishaarey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

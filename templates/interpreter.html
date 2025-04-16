@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishaarey - ISL Interpreter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('/static/image.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+            padding-top: 80px; /* Space for header */
+            padding-bottom: 20px; /* Space before footer */
+        }
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 500px;
+        }
+        .panels-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            height: 100%;
+        }
+        @media (min-width: 1024px) {
+            .panels-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .panel {
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+        .video-wrapper {
+            flex: 1;
+            position: relative;
+            min-height: 300px;
+        }
+        .translation-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="font-[Poppins] flex flex-col min-h-screen">
+    <!-- Header  -->
+    <header class="bg-indigo-600 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-hands-helping text-2xl"></i>
+                <h1 class="text-2xl font-bold">Ishaarey Interpreter</h1>
+            </div>
+            <a href="/templates/index.html" class="text-white hover:text-indigo-200">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 flex-grow">
+        <div class="content-container">
+            <div class="panels-container">
+                <!-- Video Panel -->
+                <div class="panel">
+                    <div class="p-4">
+                        <h2 class="text-2xl font-semibold text-gray-800">Sign Language Input</h2>
+                        <p class="text-sm text-gray-500">Perform signs in front of your camera</p>
+                    </div>
+                    <div class="video-wrapper p-4">
+                        <video id="webcam" autoplay playsinline muted class="w-full h-full object-cover rounded-lg"></video>
+                    </div>
+                    <div class="bg-black bg-opacity-50 text-white p-2 flex justify-between items-center">
+                        <div id="fpsCounter" class="text-sm">60 FPS</div>
+                        <div class="flex space-x-2">
+                            <button id="startCamera" class="text-sm bg-green-500 hover:bg-green-600 px-3 py-1 rounded">
+                                <i class="fas fa-play"></i> Start
+                            </button>
+                            <button id="stopCamera" class="text-sm bg-red-500 hover:bg-red-600 px-3 py-1 rounded">
+                                <i class="fas fa-stop"></i> Stop
+                            </button>
+                            <button id="flipCamera" class="text-sm bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded">
+                                <i class="fas fa-camera-retro"></i> Flip
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Translation Panel -->
+                <div class="panel">
+                    <div class="p-4 border-b">
+                        <h2 class="text-2xl font-semibold text-gray-800">Translation Output</h2>
+                        <p class="text-sm text-gray-500">Real-time text and speech conversion</p>
+                    </div>
+                    
+                    <div class="translation-content p-6 text-3xl bg-blue-50 bg-opacity-80 m-4 rounded-lg">
+                        <!-- Gesture Output Placeholder -->
+                        <div id="gestureOutput" class="gesture-display mb-4 text-center">
+                            <div class="text-5xl mb-2">👋</div>
+                            <div class="text-sm text-gray-500">Detected Gesture</div>
+                        </div>
+                        
+                        <!-- Translation Text -->
+                        <div class="text-center text-gray-400 flex-grow flex items-center justify-center" id="placeholderText">
+                            Your translations will appear here
+                        </div>
+                        
+                        <!-- Feedback Buttons -->
+                        <div class="mt-6 flex gap-4 justify-center">
+                            <button id="thumbsUpBtn" class="control-btn p-3 bg-green-100 text-green-600 rounded-full hover:bg-green-200">
+                                <i class="fas fa-thumbs-up text-xl"></i>
+                            </button>
+                            <button id="thumbsDownBtn" class="control-btn p-3 bg-red-100 text-red-600 rounded-full hover:bg-red-200">
+                                <i class="fas fa-thumbs-down text-xl"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Confidence Indicator -->
+                        <div class="mt-4 w-full bg-gray-200 rounded-full h-2.5">
+                            <div id="confidenceBar" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                        </div>
+                        <div id="confidenceText" class="text-xs text-gray-500 mt-1 text-center">Confidence: 0%</div>
+                    </div>
+
+                    <div class="p-4 border-t">
+                        <div class="flex flex-wrap gap-2 mb-4 justify-center">
+                            <button class="language-btn px-4 py-2 bg-indigo-600 text-white rounded-full" data-lang="Hindi">Hindi</button>
+                            <button class="language-btn px-4 py-2 bg-indigo-600 text-white rounded-full" data-lang="English">English</button>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <button id="speakBtn" class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 flex items-center gap-2">
+                                <i class="fas fa-volume-up"></i> Speak Translation
+                            </button>
+                            <button id="copyBtn" class="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 flex items-center gap-2">
+                                <i class="fas fa-copy"></i> Copy Text
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4 mt-auto">
+        <div class="container mx-auto text-center">
+            <p "text-center mt-8 pt-6 border-t border-gray-700">© 2025 Ishaarey. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- Camera Permission Denied Popup -->
+    <div id="permissionPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-6 rounded-lg max-w-md w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Permission Required</h3>
+                <button id="closePermPopup" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="text-gray-600 mb-4">Camera access was denied. Please enable camera permissions in your browser settings to use this feature.</p>
+            <button id="openSettings" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">
+                <i class="fas fa-cog mr-2"></i> Browser Settings
+            </button>
+        </div>
+    </div>
+
+    <!-- Camera Not Found Popup -->
+    <div id="cameraPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-6 rounded-lg max-w-md w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Camera Required</h3>
+                <button id="closePopup" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="text-gray-600 mb-4">We couldn't access your camera. Please ensure you have a working camera and have granted permission.</p>
+            <button id="retryCamera" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">
+                <i class="fas fa-sync-alt mr-2"></i> Try Again
+            </button>
+        </div>
+    </div>
+
+    <!-- Generic Error Toast -->
+    <div id="errorToast" class="fixed bottom-4 right-4 bg-red-600 text-white px-4 py-2 rounded shadow-lg hidden z-50">
+        Camera Error
+    </div>
+
+    <script src="/static/script.js" defer></script>
+</body>
+</html>

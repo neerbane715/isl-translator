@@ -1,0 +1,67 @@
+{
+    "supportedLanguages": [
+        {
+            "code": "english",
+            "name": "English",
+            "nativeName": "English"
+        },
+        {
+            "code": "hindi",
+            "name": "Hindi",
+            "nativeName": "हिन्दी"
+        },
+        {
+            "code": "punjabi",
+            "name": "Punjabi",
+            "nativeName": "ਪੰਜਾਬੀ"
+        },
+        {
+            "code": "bengali",
+            "name": "Bengali",
+            "nativeName": "বাংলা"
+        },
+        {
+            "code": "tamil",
+            "name": "Tamil",
+            "nativeName": "தமிழ்"
+        },
+        {
+            "code": "telugu",
+            "name": "Telugu",
+            "nativeName": "తెలుగు"
+        },
+        {
+            "code": "marathi",
+            "name": "Marathi",
+            "nativeName": "मराठी"
+        },
+        {
+            "code": "gujarati",
+            "name": "Gujarati",
+            "nativeName": "ગુજરાતી"
+        },
+        {
+            "code": "kannada",
+            "name": "Kannada",
+            "nativeName": "ಕನ್ನಡ"
+        },
+        {
+            "code": "malayalam",
+            "name": "Malayalam",
+            "nativeName": "മലയാളം"
+        }
+    ],
+    "defaultSettings": {
+        "language": "english",
+        "frameRate": 60,
+        "confidenceThreshold": 0.8,
+        "camera": "front",
+        "darkMode": false,
+        "highContrast": false
+    },
+    "apiEndpoints": {
+        "frameProcessing": "/api/process-frame",
+        "translation": "/api/translate"
+    },
+    "version": "1.0.0"
+}
