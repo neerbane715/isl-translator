@@ -53,6 +53,10 @@ from flask import render_template
 def home():
     return render_template('index.html')
 
+@app.route('/interpreter')
+def interpreter():
+    return render_template('interpreter.html')
+
 
 # Initialize sequence buffer globally
 sequence = []  # Keep last 30 frames
