@@ -229,7 +229,7 @@ async function captureAndPredict() {
 
         const imageData = canvas.toDataURL('image/jpeg', 0.8);
 
-        const response = await fetch('https://isl-translator-2wii.onrender.com//predict', {
+        const response = await fetch('https://isl-translator-2wii.onrender.com/predict', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -347,7 +347,7 @@ async function startCamera() {
             // Notify server to start predictions
             console.log('Notifying server to start predictions');
             try {
-                const response = await fetch('https://isl-translator-2wii.onrender.com//start_predictions', {
+                const response = await fetch('https://isl-translator-2wii.onrender.com/start_predictions', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -409,7 +409,7 @@ async function stopCamera() {
     // Notify server to stop camera and predictions
     try {
         console.log('Notifying server to stop camera and predictions');
-        const response = await fetch('https://isl-translator-2wii.onrender.com//stop_camera', {
+        const response = await fetch('https://isl-translator-2wii.onrender.com/stop_camera', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
