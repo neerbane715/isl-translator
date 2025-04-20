@@ -22,7 +22,8 @@ Development Approach:
 
 
 
-Preview of website deployment : https://nfs2gx-8000.csb.app/
+Preview of website deployment : https://vfl6yg-8000.csb.app/templates/index.html
+                                https://isl-s6wi.onrender.com
 
 
 Dataset link : https://drive.google.com/drive/folders/1-lTvmomtaQJrCn4aeScNhFGY1RMiDc6X?usp=sharing
