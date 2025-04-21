@@ -232,8 +232,9 @@ async function captureAndPredict() {
         const response = await fetch('https://isl-translator-2wii.onrender.com/predict', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json',  
             },
+            credentials: "include",
             body: JSON.stringify({
                 image: imageData
             })
