@@ -360,12 +360,47 @@ def video_feed():
     return Response(generate_frames(),
                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
+# if __name__ == '__main__':
+#     print("Server starting... Press Ctrl+C to stop manually")
+#     try:
+#         # Configure Flask for production
+#         app.config['PROPAGATE_EXCEPTIONS'] = True
+        
+#         # Add CORS headers
+#         CORS(app, resources={
+#             r"/video_feed": {"origins": "*"},
+#             r"/predict": {"origins": "*"},
+#             r"/stop_camera": {"origins": "*"},
+#             r"/shutdown": {"origins": "*"}
+#         })
+        
+#         # Run the Flask app
+#         app.run(
+#             host='0.0.0.0',
+#             port=5000,
+#             threaded=True,
+#             use_reloader=False
+#         )
+#     except KeyboardInterrupt:
+#         print("\nShutting down server...")
+#         shutdown_event.set()
+#     finally:
+#         try:
+#             holistic.close()
+#         except:
+#             pass 
+import os
+
 if __name__ == '__main__':
     print("Server starting... Press Ctrl+C to stop manually")
     try:
         # Configure Flask for production
         app.config['PROPAGATE_EXCEPTIONS'] = True
-        
+
+        # Ensure templates and static files are served properly
+        app.static_folder = 'static'
+        app.template_folder = 'templates'
+
         # Add CORS headers
         CORS(app, resources={
             r"/video_feed": {"origins": "*"},
@@ -373,11 +408,14 @@ if __name__ == '__main__':
             r"/stop_camera": {"origins": "*"},
             r"/shutdown": {"origins": "*"}
         })
-        
+
+        # Read port from Render environment variable
+        port = int(os.environ.get("PORT", 5000))
+
         # Run the Flask app
         app.run(
             host='0.0.0.0',
-            port=5000,
+            port=port,
             threaded=True,
             use_reloader=False
         )
@@ -388,4 +426,4 @@ if __name__ == '__main__':
         try:
             holistic.close()
         except:
-            pass 
+            pass
