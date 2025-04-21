@@ -40,11 +40,11 @@ from Detection_model import mediapipe_detection, extract_keypoints, actions, mod
 app = Flask(__name__)
 
 # Set correct frontend origin
-frontend_origin = 'https://isl-s6wi.onrender.com'
+# frontend_origin = 'https://isl-s6wi.onrender.com'
 
 # CORS configuration
-CORS(app, origins=[frontend_origin], supports_credentials=True)
-
+# CORS(app, origins=[frontend_origin], supports_credentials=True)
+CORS(app, resources={r"/*": {"origins": "https://isl-s6wi.onrender.com"}}, supports_credentials=True)
 # Global shutdown event
 shutdown_event = Event()
 
