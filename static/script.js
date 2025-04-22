@@ -240,7 +240,11 @@ async function captureAndPredict() {
             })
         });
 
-        const result = await response.json();
+      if (!response.ok) {
+    throw new Error(`Server error: ${response.status}`);
+}
+const result = await response.json();
+
         
         if (result.error) {
             console.error('Prediction error:', result.error);
