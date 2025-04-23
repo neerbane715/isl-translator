@@ -1,3 +1,4 @@
+import streamlit as st
 def check_dependencies():
     try:
         import tensorflow as tf
